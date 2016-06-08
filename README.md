@@ -40,7 +40,7 @@ TODO:
 - Update comments per file
 - (Possibly) change the names of each file
 - Look for redundancies/possible updates to each file
-- Find out why the following warning outputs on a Mac OS X build (after:
+- Find out why the following warning outputs on a Mac OS X build (after running `build_work.sh`):
   ```
     clang: warning: -lcpp_driver.lis: 'linker' input unused
     ld: warning: PIE disabled. Absolute addressing (perhaps -mdynamic-no-pic) not allowed in code signed PIE, but used in _computehsum from computehsum.o. To fix this warning, don't compile with -mdynamic-no-pic or link with -Wl,-no_pie
