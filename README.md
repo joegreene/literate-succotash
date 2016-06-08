@@ -8,7 +8,7 @@
 
 ### Intro
 
-<div style="text-align:center"><img src ="https://en.wikipedia.org/api/rest_v1/media/math/render/svg/4e15948216b708718574eb69a79d049a3701ba92" /></div>
+![alt text](https://en.wikipedia.org/api/rest_v1/media/math/render/svg/4e15948216b708718574eb69a79d049a3701ba92 "Harmonic Sum (image from Wikipedia)")
 
 - This project computes the harmonic sum for positive integers and is meant to be able to compute extreme positive integers (e.g. in the billions) in a quick amount of time.
 - This project (currently) has C/C++ as a driver and assembly code as a computer (for the harmonic sum)
