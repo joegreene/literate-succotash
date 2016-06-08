@@ -1,7 +1,6 @@
 literate-succotash
 ====================
-[quote]
-	A little fun with C++ multithreading and NASM x86-64 assembly.
+>A little fun with C++ multithreading and NASM x86-64 assembly.
 
 How to Run:
 -----------
