@@ -1,0 +1,13 @@
+Please enter a positive integer for the number of terms to include in the harmonic sum: 6000000000000
+The harmonic sum H(6000000000000) is being computed.
+Please wait . . . .
+The sum has been computed and returned from the assembly file.
+The clock time after computing the harmonic sum was 38354532028146 
+The clock time before computing the sum was         27666331467092 
+The harmonic computation required 10688200561054 clock cycles (tics) which is 3958592800390 nanoseconds on this machine.
+The harmonic sum of 6000000000000 terms is 29.999996240388608015, which is 0x403DFFFFC0EC978F.
+
+H-SUM: 29.999996240388608015 
+Last term:  0.000000000000166667 
+Time taken: 10688200561054 tics
+Tics to seconds: 3958.592800389999865729 

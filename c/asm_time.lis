@@ -1,0 +1,60 @@
+     1                                  ;Author information
+     2                                  ;  Author name: Joseph Greene
+     3                                  ;Project information
+     4                                  ;  Project title: Harmonic Series Computer
+     5                                  ;  Purpose: To compute the harmonic sum of an integer divisible by four. Mainly, this program is a means 
+     6                                  ;           to test processor performance and optimize speed of the program.
+     7                                  ;  Status: Complete
+     8                                  ;  Project files: assign6-cdriver.cpp, assign5-computehsum.asm, assign6-time.asm, assign6-macros.inc
+     9                                  ;Module information
+    10                                  ;  File name: assign6-time.asm
+    11                                  ;  This module's call name: gettime
+    12                                  ;  Language: X86-64
+    13                                  ;  Syntax: Intel
+    14                                  ;  Date last modified: 2015-Apr-23
+    15                                  ;  Purpose:  To get the current ticks of the computer.
+    16                                  ;  Status: Complete
+    17                                  ;  Constraints: None
+    18                                  ;  Future enhancements: None so far.
+    19                                  ;Translator information
+    20                                  ;  Linux: nasm -f elf64 -Ox -l asm_time.lis -o asm_time.o assign6-time.asm
+    21                                  ;References and credits
+    22                                  ;  CS 240 Holliday website (for all the macro work)
+    23                                  ;
+    24                                  ;========== Global declarations ===========================================================================================================================================
+    25                                  
+    26                                  global  _gettime                                            ;Make this program callable by other programs.
+    27                                  
+    28                                  segment .data                                               ;Initialized data are declared here
+    29                                  
+    30                                  ;Nothing here
+    31                                  
+    32                                  segment .bss                                                ;Uninitialized data here
+    33                                  
+    34                                  ;===== Begin executable instructions here =================================================================================================================================
+    35                                  
+    36                                  segment .text                                               ;Place executable instructions in this segment.
+    37                                  
+    38                                  _gettime:                                                   ;Entry point.  Execution begins here.
+    39                                  
+    40                                  ;==========================================================================================================================================================================
+    41                                  ;===== Begin the application here: get time ===============================================================================================================================
+    42                                  ;==========================================================================================================================================================================
+    43                                  
+    44 00000000 52                      push       rdx                                              ;Back up rdx prior to call
+    45                                  
+    46 00000001 4831C0                  xor        rax, rax                                         ;Zero-out rax (precondition for cpu time call)
+    47 00000004 4831D2                  xor        rdx, rdx                                         ;Zero-out rdx (precondition for cpu time call)
+    48                                  
+    49 00000007 0FA2                    cpuid                                                       ;Needed for some reason
+    50 00000009 0F31                    rdtsc                                                       ;Get time (put into low of rax and high of rdx respectively)
+    51                                  
+    52 0000000B 48C1E220                shl        rdx, 32                                          ;Shift rdx left by 32 bits (to make room for other half of time, which is in rdx)
+    53 0000000F 4809D0                  or         rax, rdx                                         ;rax now holds the time (leave in there so it doesn't get overridden by restoregpr)
+    54                                  
+    55 00000012 5A                      pop        rdx                                              ;Restore rdx
+    56                                  
+    57 00000013 4889C7                  mov        rdi, rax                                         ;Copy time to rdi (for returning)
+    58                                  
+    59 00000016 C3                      ret                                                         ;Return back to caller
+    60                                  
