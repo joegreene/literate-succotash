@@ -11,4 +11,3 @@ g++ -c -m64 -Wall -l cpp_driver.lis -o cpp_driver.o cppdriver.cpp -std=c++11
 
 # link object files together to make final executable (harmonicsum.out)
 g++ -m64 -o harmonicsum.out cpp_driver.o computehsum.o asm_time.o -std=c++11
-
