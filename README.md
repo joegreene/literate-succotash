@@ -29,7 +29,7 @@
   - `cpp`: Holds the c++-style version of the code (uses std::future and std::async for multithreading)
 - `Help`: Miscellaneous documents used to come up with code product
 - `Utlity`: Holds the `debug.inc` and `debug.asm` to check the stack in the `.asm` files.
-  - Called via macros `showymmregisters #`, `showxmmregisters #`, etc. in the 
+  - Called via macros `showymmregisters #`, `showxmmregisters #`, etc. in `debug.inc`
 
 ### What Needs To Be Completed
 - Update comments per file
