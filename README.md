@@ -15,7 +15,7 @@
 - This project is mostly a means to test processor performance, learn more about multithreading, and optimize speed of a program.
 
 ### How to Run
-- Linux:
+- Linux (untested):
   - Run `./build_work.sh && ./clean_dir.sh` in the respective `c` or `cpp` folders
 - Mac OS X:
   - Run `./build_work.sh && ./clean_dir.sh` in the respective `c` or `cpp` folders
