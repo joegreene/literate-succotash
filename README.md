@@ -34,6 +34,7 @@
 ### What Needs To Be Completed
 - Update comments per file
 - (Possibly) change the names of each file
+- Create a proper makefile (to do easy compilation on different OS's)
 - Look for redundancies/possible updates to each file
 - Find out why the following warning outputs on a Mac OS X build (after running `build_work.sh`), pretty sure due to the workaround in `computehsum.asm`:
   ```
