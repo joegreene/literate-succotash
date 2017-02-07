@@ -32,10 +32,11 @@ using std::future;
 //Constant for number of threads to use (usually this value works best with the number of cores you have)
 const int NUM_THREADS    = 2;
 // to calculate the number of nanoseconds the program ran for (27 is from 2.7 GHz, the clock rate on my cpu)
+// NOTE: MODIFY THIS IF YOU REQUIRE ACCURATE TICS RESULTS
 const int CPU_CLOCK_RATE = 27;
 
 // multithreading threshold (NOTE: Code breaks if THRESHOLD <= 4)
-const unsigned long MULTIHTREAD_THRESHOLD = 1000000000;
+const unsigned long MULTITHREAD_THRESHOLD = 1000000000;
 
 // Assembly functions
 extern "C" unsigned long gettime();
@@ -67,7 +68,7 @@ int main()
   start_time = gettime();
 
   // don't bother with multi-threading (pretty quick unless the value exceeds a certain threshold)
-  if(num_terms < MULTIHTREAD_THRESHOLD)
+  if(num_terms < MULTITHREAD_THRESHOLD)
   { 
     total_sum = computehsum(1, num_terms, &last_term);
   }
@@ -86,8 +87,8 @@ int main()
   elapsed_tics = end_time - start_time;
   nanoseconds = (unsigned long)(elapsed_tics*10/CPU_CLOCK_RATE);
   
-  // weird conversion required to output double as IEEE 754 64-bit hexadecimal format
-  // steps: cast the total_sum address as an unsigned long*, dereference that (to prevent any implicit casts from double to long)
+  // reinterpret cast required to output double as a hexadecimal value (which is in the IEEE 754 format)
+  // steps: cast the total_sum address as an unsigned long*, then dereference that (to prevent any implicit casts from double to long)
   sum_in_hex = *(reinterpret_cast<unsigned long*>(&total_sum));
   
   // set flags for hex output and decimal space printing
@@ -112,20 +113,18 @@ int main()
 }
 
 void threaded_compute(unsigned long num_terms, double& total_sum, double& last_term) {
-  future<double> thread_list[NUM_THREADS];             
+  future<double> thread_list[NUM_THREADS];             // each thread (which each returns a double)
   double         last_terms[NUM_THREADS];              // last terms parallel to each thread
   unsigned int   i;                                    // your everyday run-of-the-mill loop control variable
   unsigned long  term_length = num_terms/NUM_THREADS;  // how big of a chunk each thread should perform
 
-  // run each pthread
+  // call each thread
   for(i = 0; i < NUM_THREADS; ++i)
   {
-    // Call each thread
     thread_list[i] = async(computehsum, (i*term_length)+1, (i+1)*term_length, &last_terms[i]);
-                                     
   }
 
-  // Accumulate sum from each thread
+  // accumulate sum from each thread
   for(i = 0; i < NUM_THREADS; ++i)
   {
     total_sum += thread_list[i].get();
@@ -137,18 +136,20 @@ void threaded_compute(unsigned long num_terms, double& total_sum, double& last_t
 
 void remove_overadd(unsigned long num_terms, double& total_sum, double& last_term) 
 {
-  // The below variable helps us find how many terms the assembly code actually computed (which is 
+  // the below variable helps us find how many terms the assembly code actually computed (which is 
   // always the next highest multiple of 4, as compared to the input)
   //
-  // Example: num_terms = 6, assembly code computes 8
+  // example: num_terms = 6, assembly code computes 8
   //          num_terms_computed = ((6 + 4 - 1)/4) * 4 --> (9/4)*4 --> 2 * 4 --> 8
   unsigned long num_terms_computed = ((num_terms + 3)/4)*4;
 
+  // for each over-added term, subtract such term
   for(; num_terms_computed > num_terms; --num_terms_computed)
   {
     total_sum = total_sum - (1.0/num_terms_computed);
   }
 
+  // store the real last term
   last_term = 1/num_terms;
 }
 
