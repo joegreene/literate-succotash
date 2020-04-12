@@ -2,7 +2,7 @@
 
 ![alt text](https://en.wikipedia.org/api/rest_v1/media/math/render/svg/4e15948216b708718574eb69a79d049a3701ba92 "Harmonic Sum (image from Wikipedia)")
 
-`literate-succotash` is an efficient harmonic sum calculator written in C/C++, targeting Intel x86-64 processors with the AVX2 instruction set included. It focuses specifically on computing large positive N-values (e.g. in the billions) of the harmonic sum in a quick amount of time.
+`literate-succotash` is an efficient harmonic sum calculator written in C/C++, targeting Intel x86-64 processors with the AVX instruction set included. It focuses specifically on computing large positive N-values (e.g. in the billions) of the harmonic sum in a quick amount of time.
 
 ## Purpose
 
@@ -15,7 +15,7 @@ Although this project initially started out as a homework assignment for an asse
 
 ### Build Requirements
 
-- An x86-64 Intel CPU with AVX2 instructions
+- An x86-64 Intel CPU with AVX instructions ([anything past Sandy Bridge will work](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#CPUs_with_AVX)).
 - `nasm`
 - `gcc` (to run the c version)
 - `g++` (to run the c++ version)
@@ -34,6 +34,7 @@ Future plans include writing a make file or some equivalent structure to determi
 
 ### Future Plans
 
+- Use `make` to reduce folder count
 - Update documentation
 - Add tests
 - Create a proper makefile (to do easy compilation on different operating systems)
