@@ -1,0 +1,31 @@
+joe@DESKTOP-769015U:~/projects/github/literate-succotash/old/linux/cpp$ ./hsum.out 
+# of terms to compute in the harmonic sum: 6000000000000
+Computing sum using 6 threads at 3.6 GHz.
+Stats:
+- Start time: 111594021855144
+- End time: 113652710284027
+- Elapsed clock cycles (tics): 2058688428883
+- Elapsed nanoseconds: 571857896911
+- Elapsed seconds: 571
+- H(6000000000000) = 30
+
+Results:
+- Sum: 29.999996221268975916
+- Sum in hex: 0x403DFFFFC09A794D
+- Final term: 0.000000000000166667
+---
+joe@DESKTOP-769015U:~/projects/github/literate-succotash/old/linux/cpp$ ./hsum.out 
+# of terms to compute in the harmonic sum: 6000000000000
+Computing sum using 12 threads at 3.6 GHz.
+Stats:
+- Start time: 109782213228730
+- End time: 111492355844789
+- Elapsed clock cycles (tics): 1710142616059
+- Elapsed nanoseconds: 475039615571
+- Elapsed seconds: 475
+- H(6000000000000) = 30
+
+Results:
+- Sum: 29.999996245600751621
+- Sum in hex: 0x403DFFFFC102FA5F
+- Final term: 0.000000000000166667
