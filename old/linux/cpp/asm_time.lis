@@ -23,7 +23,7 @@
     23                                  ;
     24                                  ;========== Global declarations ===========================================================================================================================================
     25                                  
-    26                                  global  _gettime                                            ;Make this program callable by other programs.
+    26                                  global  gettime                                            ;Make this program callable by other programs.
     27                                  
     28                                  segment .data                                               ;Initialized data are declared here
     29                                  
@@ -35,7 +35,7 @@
     35                                  
     36                                  segment .text                                               ;Place executable instructions in this segment.
     37                                  
-    38                                  _gettime:                                                   ;Entry point.  Execution begins here.
+    38                                  gettime:                                                   ;Entry point.  Execution begins here.
     39                                  
     40                                  ;==========================================================================================================================================================================
     41                                  ;===== Begin the application here: get time ===============================================================================================================================

@@ -32,7 +32,7 @@
 
 %include "general-macros.inc"                               ;This file contains various macros that will be used in this driver
 
-global computehsum                                         ;Make this program callable by other programs.
+global computehsum                                          ;Make this program callable by other programs.
 
 segment .data                                               ;Initialized data are declared here
 
